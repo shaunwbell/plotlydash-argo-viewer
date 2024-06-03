@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 erddap_url = 'http://ecofoci-field.pmel.noaa.gov:8080/erddap'
 erddap_datasetID = ['2024_Argos_Drifters_NRT','2024_Argos_Drifters_NRT']
 
-meta_variables = ['longitude', 'latitude', 'time',]
+meta_variables = ['longitude', 'latitude', 'trajectory_id', 'time',]
 surface_variables = ['sst','strain','location_quality',]
 unused_variables = []
 depth_variables = []
