@@ -39,6 +39,7 @@ def setup_periodic_tasks(sender, **kwargs):
 @celery_app.task
 def load_observations():
     if not db.exists():
+        #run this once at start to create database - there is a db instance issue though
         #url = 'https://data.pmel.noaa.gov/pmel/erddap/tabledap/osmc_rt_60.csv?' + constants.all_variables_comma_separated + '&time>=2022-08-01T00:00:00Z'
         #url = 'https://data.pmel.noaa.gov/pmel/erddap/tabledap/osmc_rt_60.csv?' + constants.all_variables_comma_separated
         url = f'{constants.erddap_url}/tabledap/{constants.erddap_datasetID[0]}.csv?{constants.all_variables_comma_separated}%26time%3E%3Dnow-180days'
@@ -85,7 +86,7 @@ def append_new_observations():
     # url = 'https://data.pmel.noaa.gov/pmel/erddap/tabledap/osmc_rt_60.csv?' + constants.all_variables_comma_separated + '&time>=2022-08-01T00:00:00Z'
     # url = 'https://data.pmel.noaa.gov/pmel/erddap/tabledap/osmc_rt_60.csv?' + constants.all_variables_comma_separated
     # url = 'https://data.pmel.noaa.gov/pmel/erddap/tabledap/osmc_rt_60.csv?' + constants.all_variables_comma_separated + '&time>=now-14days'
-    url = f'{constants.erddap_url}/tabledap/{constants.erddap_datasetID[0]}.csv?{constants.all_variables_comma_separated}%26time%3E%3Dnow-180days'
+    url = f'{constants.erddap_url}/tabledap/{constants.erddap_datasetID[0]}.csv?{constants.all_variables_comma_separated}%26time%3E%3Dnow-15days'
     
     logger.info('Reading data from ' + url)
 
